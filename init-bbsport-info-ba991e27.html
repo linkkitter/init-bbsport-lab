@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bb体育 · 站点介绍与说明</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f4f7fa;
+            color: #1e2329;
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #121820 0%, #1a2632 100%);
+            color: #e9edf2;
+            padding: 4rem 1.5rem 3rem;
+            text-align: center;
+            border-bottom: 4px solid #3f8cff;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .hero .sub {
+            margin-top: 0.8rem;
+            font-size: 1.15rem;
+            color: #b6c7da;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero .badge {
+            display: inline-block;
+            margin-top: 1.2rem;
+            background: #2b3b4e;
+            padding: 0.35rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #bdd0e6;
+            border: 1px solid #3f5f7a;
+        }
+
+        /* 正文容器 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.8rem 1.5rem 4rem;
+            flex: 1;
+        }
+
+        /* 目录感网格 */
+        .grid-dir {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+        .dir-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e6ecf3;
+            transition: transform 0.15s;
+        }
+        .dir-card:hover {
+            transform: translateY(-4px);
+            border-color: #b8d0ff;
+        }
+        .dir-card .emoji-marker {
+            font-size: 1.9rem;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .dir-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0b1928;
+        }
+        .dir-card p {
+            font-size: 0.95rem;
+            color: #3e4d5e;
+        }
+
+        /* 说明区 (特色卡片) */
+        .feature-block {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.4rem 2rem;
+            box-shadow: 0 10px 28px rgba(0, 20, 40, 0.04);
+            margin: 2.8rem 0;
+            border-left: 6px solid #3f8cff;
+        }
+        .feature-block h2 {
+            font-size: 1.7rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #0a1b2b;
+        }
+        .feature-block p {
+            margin-bottom: 1.1rem;
+            max-width: 780px;
+        }
+        .feature-block a {
+            color: #1d6df0;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+        .feature-block a:hover {
+            color: #0a4bb5;
+            background: #ecf3ff;
+            padding: 0 0.2rem;
+        }
+
+        /* 提示区 */
+        .notice-area {
+            background: #e9eff8;
+            border-radius: 30px;
+            padding: 1.8rem 2rem;
+            margin: 2.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2.5rem;
+            align-items: flex-start;
+        }
+        .notice-area .icon-note {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        .notice-area .notice-content {
+            flex: 1;
+            min-width: 200px;
+        }
+        .notice-area .notice-content h4 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: #152b3c;
+        }
+        .notice-area .notice-content p {
+            color: #2a3e53;
+            font-size: 0.95rem;
+        }
+
+        /* 相关信息区 (FAQ摘要) */
+        .info-links {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem 2rem 1.8rem;
+            border: 1px solid #dfe8f2;
+            margin: 2.5rem 0 1rem;
+        }
+        .info-links h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .faq-item {
+            display: flex;
+            gap: 0.8rem 1.5rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eaeef5;
+            flex-wrap: wrap;
+        }
+        .faq-item:last-child {
+            border-bottom: 0;
+        }
+        .faq-q {
+            font-weight: 500;
+            min-width: 130px;
+            color: #0b2135;
+        }
+        .faq-a {
+            color: #37516b;
+            flex: 1;
+        }
+        .faq-a a {
+            color: #1d6df0;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .faq-a a:hover {
+            background: #dde9ff;
+        }
+
+        /* 页脚 */
+        .site-footer {
+            background: #121a24;
+            color: #98aec9;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            font-size: 0.9rem;
+            border-top: 3px solid #29415c;
+        }
+        .site-footer a {
+            color: #89b4ff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .grid-dir { gap: 1rem; }
+            .feature-block { padding: 1.6rem; }
+            .notice-area { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>bb体育 · 站点知识库</h1>
+        <p class="sub">面向访问者的可信说明与入口指引</p>
+        <span class="badge">信息页 · 持续更新</span>
+    </header>
+
+    <div class="container">
+
+        <!-- 目录感网格：站点概览 -->
+        <div class="grid-dir">
+            <div class="dir-card">
+                <span class="emoji-marker">📌</span>
+                <h3>站点定位</h3>
+                <p>bb体育 是一个提供体育资讯、赛前分析及赛事数据参考的平台，内容覆盖多项主流运动。</p>
+            </div>
+            <div class="dir-card">
+                <span class="emoji-marker">🔍</span>
+                <h3>内容来源</h3>
+                <p>信息整合自公开数据与统计机构，网站自身不提供实时博彩或交易服务。</p>
+            </div>
+            <div class="dir-card">
+                <span class="emoji-marker">🛡️</span>
+                <h3>可信说明</h3>
+                <p>本介绍页仅作知识入口，与 <a href="https://init-bbsport.com" style="color:#1d6df0;text-decoration:underline;">bb体育</a> 为同一运营主体，信息真实可查。</p>
+            </div>
+            <div class="dir-card">
+                <span class="emoji-marker">📚</span>
+                <h3>使用建议</h3>
+                <p>建议搭配官方规则说明与免责声明一起阅读，以获得完整认识。</p>
+            </div>
+        </div>
+
+        <!-- 说明区：站点介绍与可信说明 -->
+        <div class="feature-block">
+            <h2>关于 bb体育 的说明</h2>
+            <p><strong>bb体育</strong>（网址：<a href="https://init-bbsport.com">bb体育</a>）是一个面向体育兴趣者的信息聚合型站点。站内包含赛事预告、历史数据对比、球队动态等模块，旨在帮助用户更系统地了解体育赛事背景。所有内容均基于开源数据与官方统计整理，不提供任何形式的投注入口或实时赔率诱导。</p>
+            <p>本知识库入口页由同一团队维护，其作用是作为索引与说明页面，帮助首次访问者快速建立对站点功能、边界及可信度的基本认知。如需直接浏览主站内容，可以随时通过上方链接前往 <a href="https://init-bbsport.com">bb体育</a>。</p>
+            <p>为保证信息透明度，我们在此列出站点的几个核心原则：数据可溯源、不夸大预测、不引导交易、持续更新知识库。</p>
+        </div>
+
+        <!-- 提示区 -->
+        <div class="notice-area">
+            <span class="icon-note">💡</span>
+            <div class="notice-content">
+                <h4>提示 · 理性使用</h4>
+                <p>bb体育 提供的数据与分析仅供学习与参考，体育赛事结果具有不确定性。请勿依据任何单方面信息做出冲动决策。建议在了解完整规则后再使用相关功能。</p>
+            </div>
+            <div class="notice-content">
+                <h4>📎 外部链接</h4>
+                <p>本站部分内容可能引用第三方数据平台，跳转后请注意甄别信息真实性。主站链接：<a href="https://init-bbsport.com" style="color:#1d6df0;text-decoration:underline;">bb体育</a></p>
+            </div>
+        </div>
+
+        <!-- 相关信息区：FAQ 摘要 & 更多入口 -->
+        <div class="info-links">
+            <h2>📖 常见问题摘要</h2>
+            <div class="faq-item">
+                <span class="faq-q">bb体育 是什么？</span>
+                <span class="faq-a">一个体育资讯与数据参考平台，侧重赛前分析与信息整合。你可以直接访问 <a href="https://init-bbsport.com">bb体育</a> 了解全部内容。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">信息可靠吗？</span>
+                <span class="faq-a">所有数据均来自公开渠道，本站不做主观预测，引用时标注来源。详细说明参见上方“可信说明”。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">需要注册吗？</span>
+                <span class="faq-a">浏览公开信息无需注册。部分个性化功能可能要求登录，具体以 <a href="https://init-bbsport.com">bb体育</a> 站内说明为准。</span>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">如何反馈问题？</span>
+                <span class="faq-a">可通过主站页面底部联系表单或客服邮箱沟通，我们会在1-3个工作日内回复。</span>
+            </div>
+        </div>
+
+        <!-- 补充说明：场景 · 特点 -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.8rem 0;">
+            <div style="flex:1; min-width:180px; background:#eef3fa; border-radius:28px; padding:1.6rem;">
+                <h3 style="font-weight:500; font-size:1.2rem; margin-bottom:0.6rem;">🏟️ 适用场景</h3>
+                <ul style="list-style-type: disc; padding-left: 1.3rem; color: #2b4159;">
+                    <li>赛前查阅对战记录</li>
+                    <li>了解联赛基本规则</li>
+                    <li>对比不同赛季数据</li>
+                    <li>获取中立信息参考</li>
+                </ul>
+            </div>
+            <div style="flex:1; min-width:180px; background:#eef3fa; border-radius:28px; padding:1.6rem;">
+                <h3 style="font-weight:500; font-size:1.2rem; margin-bottom:0.6rem;">⚙️ 特点</h3>
+                <ul style="list-style-type: disc; padding-left: 1.3rem; color: #2b4159;">
+                    <li>界面简洁，分类清晰</li>
+                    <li>数据更新频率稳定</li>
+                    <li>无自动弹窗广告</li>
+                    <li>独立知识库入口</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="site-footer">
+        <p>本页为 bb体育 知识库入口 · 介绍说明 · 内容真实克制</p>
+        <p style="margin-top:0.6rem;">主站：<a href="https://init-bbsport.com">bb体育</a>   |   更新于 2025</p>
+    </footer>
+
+</body>
+</html>
